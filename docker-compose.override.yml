@@ -1,0 +1,17 @@
+# Copy this next to Honcho's docker-compose.yml.
+# The port override lets a Raspberry Pi reach Honcho on the Mac LAN IP.
+#
+# Requires Docker Compose v2.24.4+ for `!override`.
+# If your Compose version is older, edit Honcho's api port line manually:
+#   "127.0.0.1:8000:8000" -> "0.0.0.0:8000:8000"
+
+services:
+  api:
+    env_file:
+      - .env.local
+    ports: !override
+      - "0.0.0.0:8000:8000"
+
+  deriver:
+    env_file:
+      - .env.local
